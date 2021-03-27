@@ -1,0 +1,29 @@
+//login types
+export const USER_LOGIN_START = "USER_LOGIN_START";
+export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
+export const USER_LOGOUT_SUCCESS = "USER_LOGOUT_SUCCESS";
+
+//signup types
+export const USER_SIGNUP_START = "USER_SIGNUP_START";
+export const USER_SIGNUP_SUCCESS = "USER_SIGNUP_SUCCESS";
+export const USER_SIGNUP_FAIL = "USER_SIGNUP_FAIL";
+
+//create post types
+export const CREATE_POST_START = "CREATE_POST_START";
+export const CREATE_POST_SUCCESS = "CREATE_POST_SUCCESS";
+export const CREATE_POST_FAIL = "CREATE_POST_FAIL";
+
+//get posts
+export const GET_POSTS_START = "GET_POSTS_START";
+export const GET_POSTS_SUCCESS = "GET_POSTS_SUCCESS";
+export const GET_POSTS_FAIL = "GET_POSTS_FAIL";
+
+//vote types
+export const VOTE_START = "VOTE_START";
+export const VOTE_SUCCESS = "VOTE_SUCCESS";
+export const VOTE_FAIL = "VOTE_FAIL";
+
+//comment types
+export const CREATE_COMMENT_SUCCESS = "CREATE_COMMENT_SUCCESS";
+export const CREATE_COMMENT_FAIL = "CREATE_COMMENT_FAIL";
+export const CREATE_COMMENT_START = "CREATE_COMMENT_START";
