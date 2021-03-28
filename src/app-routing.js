@@ -1,39 +1,24 @@
-import React, { useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 import Home from "./screens/home";
 import Profile from "./screens/profile";
 import Signup from "./screens/signup";
 import Login from "./screens/login";
-import { connect } from "react-redux";
+import CustomProtectedRoute from "./protector";
 
-function Routing(props) {
-  const history = useHistory();
-  useEffect(() => {
-    if (props.authInfo === "") {
-      history.push("/login");
-    } else {
-      history.push("/");
-    }
-  }, [props.authInfo,history]);
+function Routing() {
   return (
     <Switch>
-      <Route exact path="/">
-        <Home />
-      </Route>
+      <CustomProtectedRoute exact path="/" component={Home} />
       <Route exact path="/login">
         <Login />
       </Route>
       <Route exact path="/signup">
         <Signup />
       </Route>
-      <Route exact path="/profile">
-        <Profile />
-      </Route>
+      <CustomProtectedRoute exact path="/profile" component={Profile} />
     </Switch>
   );
 }
 
-function mapStateToProps(state) {
-  return Object.assign({}, state.auth);
-}
-export default connect(mapStateToProps)(Routing);
+export default Routing;

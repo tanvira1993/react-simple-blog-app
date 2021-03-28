@@ -47,24 +47,26 @@ class Home extends Component {
     };
   }
   componentWillMount() {
-    if(this.props.authInfo !== ""){
-      this.props.dispatch(
-        PostsGetActions(this.props.history, this.props.authInfo)
-      );
-    }
+    this.props.dispatch(
+      PostsGetActions(this.props.history, this.props.authInfo)
+    );
   }
   componentWillReceiveProps(newProps) {
     if (this.state.posts !== newProps.posts) {
       this.setState({ posts: newProps.posts });
     }
   }
-  handleVote(postId, type) {
+  handleVote(postId, type, status) {
     let data = {
       post_id: postId,
     };
-    this.props.dispatch(
-      VoteActions(data, type, this.props.history, this.props.authInfo)
-    );
+    if (status) {
+      //do nothing
+    } else {
+      this.props.dispatch(
+        VoteActions(data, type, this.props.history, this.props.authInfo)
+      );
+    }
   }
   handleChange(e) {
     const { name, value } = e.target;
@@ -120,12 +122,38 @@ class Home extends Component {
                   </Typography>
                 </CardContent>
                 <CardActions disableSpacing>
-                  <Button onClick={() => this.handleVote(value._id, "up")}>
-                    <ThumbUpIcon fontSize="small" /> &nbsp;
+                  <Button
+                    onClick={() =>
+                      this.handleVote(
+                        value._id,
+                        "up",
+                        value.upvotes.includes(this.props.profile._id)
+                      )
+                    }
+                  >
+                    {value.upvotes.includes(this.props.profile._id) ? (
+                      <ThumbUpIcon color="primary" fontSize="small" />
+                    ) : (
+                      <ThumbUpIcon fontSize="small" />
+                    )}{" "}
+                    &nbsp;
                     {value.upvotes.length}
                   </Button>
-                  <Button onClick={() => this.handleVote(value._id, "down")}>
-                    <ThumbDownIcon fontSize="small" /> &nbsp;
+                  <Button
+                    onClick={() =>
+                      this.handleVote(
+                        value._id,
+                        "down",
+                        value.downvotes.includes(this.props.profile._id)
+                      )
+                    }
+                  >
+                    {value.downvotes.includes(this.props.profile._id) ? (
+                      <ThumbDownIcon color="primary" fontSize="small" />
+                    ) : (
+                      <ThumbDownIcon fontSize="small" />
+                    )}{" "}
+                    &nbsp;
                     {value.downvotes.length}
                   </Button>
                 </CardActions>

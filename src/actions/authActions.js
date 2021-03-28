@@ -133,10 +133,6 @@ export const SignupActions = (signupObject, history) => (dispatch) => {
           toast.error(data.error);
           dispatch(signupFailure());
         }
-        // if (statusCode === 401) {
-        //   toast.error("Unauthorized!");
-        //   dispatch(signupFailure());
-        // }
       })
 
       .catch((error) => {
